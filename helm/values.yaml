@@ -1,0 +1,38 @@
+appserver:
+  name: appserver
+  image: 
+    name: arjunscorpio2000/appserver
+    tag: v2
+    exposedPort: 3000 
+  replicas: 4
+  env:
+    NODE_ENV: production
+
+  service:
+    type: ClusterIP
+
+nginx:
+  name: nginx
+  image: 
+    name: arjunscorpio2000/appnginx
+    tag: v6
+    exposedPort: 80
+  replicas: 1
+
+  service:
+    type: LoadBalancer
+
+
+userservice:
+  name: userservice
+  image: 
+    name: arjunscorpio2000/userservice
+    tag: v2
+    exposedPort: 4000
+  replicas: 2
+
+  service:
+    type: ClusterIP
+
+
+
